@@ -8,16 +8,7 @@ import Login from './components/Login';
 import Movie from './components/Movie';
 
 function App() {
-  const { isAuthenticated, isLoading }: any = useAuth0();
-  console.log('isauth', isAuthenticated);
-
-  if (isLoading) {
-    return (
-      <div className='page-layout'>
-        <Loader />
-      </div>
-    );
-  }
+  const { isAuthenticated }: any = useAuth0();
   return (
     <BrowserRouter>
       <Routes>
