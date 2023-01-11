@@ -1,21 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { AuthenticationGuard } from './components/authentication-guard';
 
 import './App.css';
-import Login from './components/Login';
 import Movie from './components/Movie';
+import DetailsPage from './components/DetailsPage';
 
 function App() {
-  const { isAuthenticated }: any = useAuth0();
   return (
     <BrowserRouter>
       <Routes>
-        {!isAuthenticated ? (
-          <Route path='/' element={<Login />} />
-        ) : (
-          <Route path='/' element={<AuthenticationGuard component={Movie} />} />
-        )}
+        <Route path='/' element={<Movie />} />
+        <Route
+          path='/:id'
+          element={<AuthenticationGuard component={DetailsPage} />}
+        />
       </Routes>
     </BrowserRouter>
   );

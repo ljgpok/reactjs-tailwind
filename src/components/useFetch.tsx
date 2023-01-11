@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 
 const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
+  const [data1, setData1] = useState(null);
+  const [data2, setData2] = useState(null);
+  const [data3, setData3] = useState(null);
+  const [data4, setData4] = useState(null);
+
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(url);
@@ -11,11 +15,14 @@ const useFetch = (url: string) => {
         );
       }
       let actualData = await response.json();
-      setData(actualData.results);
+      setData1(actualData.results);
+      setData2(actualData.results);
+      setData3(actualData.results);
+      setData4(actualData.results);
     };
     getData();
   }, [url]);
-  return { data };
+  return { data1, data2, data3, data4 };
 };
 
 export default useFetch;
