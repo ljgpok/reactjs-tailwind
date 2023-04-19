@@ -26,9 +26,9 @@ function Movie() {
 
   return (
     <div>
-      {!isAuthenticated ? (
+      {/* {!isAuthenticated ? (
         <Login />
-      ) : (
+      ) : ( */}
         <PageLayout>
           <>
             <Slider />
@@ -38,7 +38,7 @@ function Movie() {
             <MoviesCollection results={data4} title='Top Rated Shows' />
           </>
         </PageLayout>
-      )}
+       {/* )} */}
     </div>
   );
 }
