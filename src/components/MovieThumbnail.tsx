@@ -14,16 +14,18 @@ function MovieThumbnail({ result }: any) {
       className='flex min-w-[250px] min-h-[170px] md:min-w-[330px] md:min-h-[210px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300'
       onClick={() => navigate(`/${result.id}`)}
     >
-      <LazyLoadImage
-        src={smallImageUrl}
-        srcSet={`${smallImageUrl} 185w, ${mediumImageUrl} 342w, ${largeImageUrl} 500w`}
-        sizes="(max-width: 480px) 185px, (max-width: 768px) 342px, 500px"
-        className='rounded-lg'
-        alt=''
-        width={330}
-        height={210}
-        // effect="blur"
-      />
+      <picture>
+        <source media="(max-width: 480px)" srcSet={smallImageUrl} />
+        <source media="(max-width: 768px)" srcSet={mediumImageUrl} />
+        <source srcSet={largeImageUrl} />
+        <LazyLoadImage
+          src={smallImageUrl}
+          className='rounded-lg'
+          alt=''
+          width={330}
+          height={210}
+        />
+      </picture>
     </div>
   );
 }
