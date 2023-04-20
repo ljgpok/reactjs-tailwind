@@ -1,20 +1,28 @@
 import { useNavigate } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function MovieThumbnail({ result }: any) {
-  const BASE_URL = 'https://image.tmdb.org/t/p/w500/';
   const navigate = useNavigate();
+
+  const BASE_URL = 'https://image.tmdb.org/t/p/';
+  const smallImageUrl = `${BASE_URL}w185${result.poster_path}`;
+  const mediumImageUrl = `${BASE_URL}w342${result.poster_path}`;
+  const largeImageUrl = `${BASE_URL}w500${result.poster_path}`;
 
   return (
     <div
       className='flex min-w-[250px] min-h-[170px] md:min-w-[330px] md:min-h-[210px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300'
       onClick={() => navigate(`/${result.id}`)}
     >
-      <img
-        src={`${BASE_URL}${result.poster_path}`}
-        width={330}
-        height={210}
+      <LazyLoadImage
+        src={smallImageUrl}
+        srcSet={`${smallImageUrl} 185w, ${mediumImageUrl} 342w, ${largeImageUrl} 500w`}
+        sizes="(max-width: 480px) 185px, (max-width: 768px) 342px, 500px"
         className='rounded-lg'
         alt=''
+        width={330}
+        height={210}
+        // effect="blur"
       />
     </div>
   );
