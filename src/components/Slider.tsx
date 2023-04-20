@@ -9,6 +9,9 @@ function Slider() {
     'slider-4.jpeg',
   ];
 
+  const imageWidth = 1200;
+  const imageHeight = 600;
+
   return (
     <section className='relative shadow-2xl max-w-screen-2xl mx-auto'>
       <div />
@@ -24,7 +27,12 @@ function Slider() {
           <div key={index}>
             <picture>
               {/* Add source elements with media queries if needed */}
-              <img src={image} alt={`Slider ${index + 1}`} />
+              <img
+                src={image}
+                alt={`Slider ${index + 1}`}
+                width={imageWidth}
+                height={imageHeight}
+              />
             </picture>
           </div>
         ))}
