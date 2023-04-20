@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function MovieThumbnail({ result }: any) {
-  const BASE_URL = 'https://image.tmdb.org/t/p/original/';
+  const BASE_URL = 'https://image.tmdb.org/t/p/w500/';
   const navigate = useNavigate();
 
   return (
