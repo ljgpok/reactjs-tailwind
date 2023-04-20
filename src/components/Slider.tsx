@@ -26,9 +26,13 @@ function Slider() {
         {sliderImages.map((image, index) => (
           <div key={index}>
             <picture>
-              {/* Add source elements with media queries if needed */}
+              {/* Add source element with type attribute for WebP format */}
+              <source
+                srcSet={`${process.env.PUBLIC_URL}/${image.replace('.jpeg', '.webp')}`}
+                type='image/webp'
+              />
               <img
-                src={image}
+                src={`${process.env.PUBLIC_URL}/${image}`}
                 alt={`Slider ${index + 1}`}
                 width={imageWidth}
                 height={imageHeight}
