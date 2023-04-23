@@ -1,28 +1,45 @@
 import { useEffect, useState } from 'react';
 
-const useFetch = (url: string) => {
-  const [data1, setData1] = useState(null);
-  const [data2, setData2] = useState(null);
-  const [data3, setData3] = useState(null);
-  const [data4, setData4] = useState(null);
+interface FetchData {
+  data1: any;
+  data2: any;
+  data3: any;
+  data4: any;
+}
+
+interface UseFetchResult {
+  data: FetchData | null;
+  error: string | null;
+}
+
+const useFetch = (url: string): UseFetchResult => {
+  const [data, setData] = useState<FetchData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`
-        );
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        let actualData = await response.json();
+        setData({
+          data1: actualData.results,
+          data2: actualData.results,
+          data3: actualData.results,
+          data4: actualData.results,
+        });
+      } catch (err: any) {
+        setError(err.message);
       }
-      let actualData = await response.json();
-      setData1(actualData.results);
-      setData2(actualData.results);
-      setData3(actualData.results);
-      setData4(actualData.results);
     };
     getData();
   }, [url]);
-  return { data1, data2, data3, data4 };
+
+  return { data, error };
 };
 
 export default useFetch;

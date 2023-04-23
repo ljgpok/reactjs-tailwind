@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ReactComponent as Logo } from '../logo.svg';
+import { Link } from 'react-router-dom';
 
 export const NavBar: React.FC = () => {
   const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();
@@ -10,15 +11,15 @@ export const NavBar: React.FC = () => {
       <Logo className='h-20 w-20' />
       {isAuthenticated && (
         <div className='hidden md:flex items-center space-x-6'>
-          <a className='header-link group cursor-pointer' href='/'>
+          <Link className='header-link group cursor-pointer' to='/'>
             <span className='span'>Home</span>
-          </a>
-          <a className='header-link group cursor-pointer' href='/'>
-            <span className='span'>Favorites</span>
-          </a>
-          <a className='header-link group cursor-pointer' href='/'>
-            <span className='span'>Search</span>
-          </a>
+          </Link>
+          <Link className='header-link group cursor-pointer' to='/movies'>
+            <span className='span'>Movies</span>
+          </Link>
+          <Link className='header-link group cursor-pointer' to='/shows'>
+            <span className='span'>Shows</span>
+          </Link>
         </div>
       )}
       {!isAuthenticated ? (
