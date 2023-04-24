@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 interface FetchData {
-  data1: any;
-  data2: any;
-  data3: any;
-  data4: any;
+  popularMovies: any;
+  topMovies: any;
+  popularShows: any;
+  topShows: any;
 }
 
 interface UseFetchResult {
@@ -27,10 +27,10 @@ const useFetch = (url: string): UseFetchResult => {
         }
         let actualData = await response.json();
         setData({
-          data1: actualData.results,
-          data2: actualData.results,
-          data3: actualData.results,
-          data4: actualData.results,
+          popularMovies: actualData.results,
+          topMovies: actualData.results,
+          popularShows: actualData.results,
+          topShows: actualData.results,
         });
       } catch (err: any) {
         setError(err.message);
